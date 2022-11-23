@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import './components/assets/style/App.scss';
+import { Header } from './components/header/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Today } from './components/today/Today';
+import { useState } from 'react';
+import { Weather } from './components/today/Weather';
+const App = () => {
 
-function App() {
+  const [data,setData] = useState({})
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header setData={setData}/>
+          <Routes>
+            <Route path='/' element={<Weather data={data}/>}/>
+            <Route/>
+          </Routes>
+      </Router>
     </div>
   );
 }
